@@ -596,6 +596,26 @@ static int face_var_normalize_coords(lua_State *L) {
   return count;
 }
 
+// face_blob(face) -> harfbuzz.Blob|nil, err
+// Returns the underlying face blob as a harfbuzz.Blob userdata.
+static int face_blob(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  hb_blob_t *hb = hb_face_reference_blob(*f);
+  if (!hb) {
+    lua_pushnil(L);
+    return 1;
+  }
+
+  // Create Blob userdata and attach the HarfBuzz blob without copying.
+  Blob *b = (Blob *)lua_newuserdata(L, sizeof(*b));
+  luaL_getmetatable(L, "harfbuzz.Blob");
+  lua_setmetatable(L, -2);
+
+  *b = hb;
+  return 1;
+}
+
 static int face_destroy(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
@@ -605,6 +625,7 @@ static int face_destroy(lua_State *L) {
 
 static const struct luaL_Reg face_methods[] = {
   { "__gc", face_destroy },
+  { "blob", face_blob },
   { "collect_unicodes", face_collect_unicodes },
   { "get_glyph_count", face_get_glyph_count },
   { "get_name", face_get_name },

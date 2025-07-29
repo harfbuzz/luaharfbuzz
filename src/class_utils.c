@@ -1,5 +1,5 @@
 // Utility functions to create Lua classes.
-#include "luaharfbuzz.h"
+#include "common.h"
 
 int register_class(lua_State *L, const char *name, const luaL_Reg *methods, const luaL_Reg *functions, const luahb_constant_t *constants) {
   luaL_newmetatable(L, name);
