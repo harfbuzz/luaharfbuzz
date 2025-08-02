@@ -267,7 +267,7 @@
 --- Cluster Levels.
 -- See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details
 -- about what each of these levels mean.
---  @section
+--  @section cluster-levels
 
 --- Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES`.
 --  @field Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES
@@ -341,7 +341,7 @@
 
 --- Predefined Script Codes.
 -- Predefined directions that correspond to their original definitions in Harfbuzz.
--- @section
+-- @section predefined-script-codes
 
 --- Wraps `HB_SCRIPT_COMMON`.
 -- @field Script.COMMON
@@ -393,7 +393,7 @@
 
 --- Predefined directions.
 -- Predefined directions that correspond to their original definitions in Harfbuzz.
--- @section
+-- @section predefined-directions
 
 --- Wraps `HB_DIRECTION_LTR`.
 -- @field Direction.LTR
@@ -425,14 +425,14 @@
 
 --- Predefined languages.
 -- Predefined languages that correspond to their original definitions in Harfbuzz.
--- @section
+-- @section predefined-languages
 
 --- Wraps `HB_LANGUAGE_INVALID`.
 -- @field Language.INVALID
 
 
 --- Unicode functions.
--- @section
+-- @section unicode-functions
 
 --- Wraps `hb_unicode_script`
 -- @param char Unicode codepoint
@@ -442,7 +442,7 @@
 
 --- Predefined Name IDs.
 -- Predefined OpenType 'name' table name identifier.
--- @section
+-- @section predefined-name-ids
 
 --- Wraps `HB_OT_NAME_ID_COPYRIGHT`
 -- @field ot.NAME_ID_COPYRIGHT
