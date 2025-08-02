@@ -384,19 +384,19 @@ describe("harfbuzz module", function()
       local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/STIXTwoText[wght].ttf'))
 
       f:set_variations(harfbuzz.Variation.new("wght=500"))
-      local normalized, after = f:get_var_coords_normalized()
-      assert.is_nil(after)
-      assert.are_same(5174, normalized)
+      local normalized1, after1 = f:get_var_coords_normalized()
+      assert.is_nil(after1)
+      assert.are_same(5174, normalized1)
 
       f:set_var_coords_design(600)
-      local normalized, after = f:get_var_coords_normalized()
-      assert.is_nil(after)
-      assert.are_same(10348, normalized)
+      local normalized2, after2 = f:get_var_coords_normalized()
+      assert.is_nil(after2)
+      assert.are_same(10348, normalized2)
 
       f:set_var_coords_normalized(1<<13)
-      local normalized, after = f:get_var_coords_normalized()
-      assert.is_nil(after)
-      assert.are_same(1<<13, normalized)
+      local normalized3, after3 = f:get_var_coords_normalized()
+      assert.is_nil(after3)
+      assert.are_same(1<<13, normalized3)
     end)
 
     if not harfbuzz:version():match'^2%.' then
