@@ -1,3 +1,5 @@
+[![Build + Deploy](https://github.com/harfbuzz/luaharfbuzz/actions/workflows/ci.yml/badge.svg)](https://github.com/harfbuzz/luaharfbuzz/actions/workflows/ci.yml)
+
 # _luaharfbuzz_
 
 Lua bindings for [Harfbuzz].
