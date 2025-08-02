@@ -133,10 +133,10 @@ print(serpent.line(glyphs, {comment = false}))
 ## Development
 
 #### Building
-You can build the package for development purposes using LuaRocks as well. It is recommended that you build it to your local tree (using `--local`) to isolate it from your actual installation.
+You can build the package for development purposes using LuaRocks as well. It is recommended that you build it to your local tree (using `--local`) to isolate it from your actual installation. For convenience, you can use `make`:
 
 ```
-luarocks --local make
+make build
 ```
 
 #### Testing and Linting

@@ -1,5 +1,8 @@
 DOCS_DIR := docs
 
+build:
+	luarocks --local make
+
 spec:
 	busted --no-coverage .
 
@@ -12,4 +15,4 @@ lint:
 doc:
 	ldoc -d ${DOCS_DIR}  .
 
-.PHONY: clean lint spec doc
+.PHONY: build clean lint spec doc
