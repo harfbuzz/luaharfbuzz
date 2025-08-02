@@ -69,8 +69,8 @@ luarocks install luaharfbuzz
 [Luarocks]: https://luarocks.org
 
 ## Documentation
-* [API Docs](http://ufytex.github.io/luaharfbuzz/)
-* [Wiki](http://github.com/ufytex/luaharfbuzz/wiki)
+* [API Docs](http://harfbuzz.github.io/luaharfbuzz/)
+* [Wiki](http://github.com/harfbuzz/luaharfbuzz/wiki)
 
 ## Sample Code
 
