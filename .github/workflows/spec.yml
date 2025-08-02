@@ -28,12 +28,16 @@ jobs:
 
     - uses: leafo/gh-actions-luarocks@master
 
-    - name: Install busted
-      run: luarocks install busted
+    - name: Install Lua dependencies
+      run: |
+        luarocks install busted
+        luarocks install luacheck
 
     - name: build
-      run: luarocks make
+      run: make build
 
     - name: test
-      run: |
-        busted --no-coverage -o utfTerminal
+      run: make test
+
+    - name: lint
+      run: make lint
