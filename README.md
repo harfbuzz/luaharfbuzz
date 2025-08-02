@@ -148,7 +148,7 @@ In order to make changes to the code and run the tests, the following dependenci
 
 Run the test suite:
 ```
-make spec
+make test
 ```
 
 Lint the codebase:
