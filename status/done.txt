@@ -24,6 +24,9 @@ hb_face_create_or_fail
 hb_face_create_from_file_or_fail
 hb_face_destroy
 hb_face_get_upem
+hb_face_get_index
+hb_face_reference_table
+hb_face_reference_blob
 hb_feature_from_string
 hb_feature_to_string
 hb_font_create

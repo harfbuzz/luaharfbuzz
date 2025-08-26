@@ -91,6 +91,19 @@ static int face_get_table(lua_State *L) {
   return 1;
 }
 
+static int face_get_blob(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Blob *b;
+
+  b = (Blob *)lua_newuserdata(L, sizeof(*b));
+  luaL_getmetatable(L, "harfbuzz.Blob");
+  lua_setmetatable(L, -2);
+
+  *b = hb_face_reference_blob(*f);
+
+  return 1;
+}
+
 static int face_get_table_tags(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
   hb_tag_t tags[STATIC_ARRAY_SIZE];
@@ -285,6 +298,13 @@ static int face_get_upem(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
   lua_pushinteger(L, hb_face_get_upem(*f));
+  return 1;
+}
+
+static int face_get_index(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushinteger(L, hb_face_get_index(*f));
   return 1;
 }
 
@@ -607,8 +627,10 @@ static const struct luaL_Reg face_methods[] = {
   { "get_glyph_count", face_get_glyph_count },
   { "get_name", face_get_name },
   { "get_table", face_get_table },
+  { "get_blob", face_get_blob },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
+  { "get_index", face_get_index },
   { "ot_color_has_palettes", face_ot_color_has_palettes },
   { "ot_color_palette_get_count", face_ot_color_palette_get_count },
   { "ot_color_palette_get_colors", face_ot_color_palette_get_colors },
