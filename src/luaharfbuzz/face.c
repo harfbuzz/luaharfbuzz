@@ -6,15 +6,13 @@
 
 static int face_new(lua_State *L) {
   Face *f;
-  hb_blob_t *blob;
   hb_face_t *face;
   const char *file_name = luaL_checkstring(L, 1);
   unsigned int face_index = (unsigned int) luaL_optinteger(L, 2, 0);
 
-  blob = hb_blob_create_from_file(file_name);
-  face = hb_face_create(blob, face_index);
+  face = hb_face_create_from_file_or_fail(file_name, face_index);
 
-  if (blob == hb_blob_get_empty() || face == hb_face_get_empty()) {
+  if (!face) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));
@@ -31,9 +29,9 @@ static int face_new_from_blob(lua_State *L) {
   Blob *blob = luaL_checkudata(L, 1, "harfbuzz.Blob");
   unsigned int face_index = (unsigned int) luaL_optinteger(L, 2, 0);
 
-  face = hb_face_create(*blob, face_index);
+  face = hb_face_create_or_fail(*blob, face_index);
 
-  if (*blob == hb_blob_get_empty() || face == hb_face_get_empty()) {
+  if (!face) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));

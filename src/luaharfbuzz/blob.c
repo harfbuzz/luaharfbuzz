@@ -25,6 +25,23 @@ static int blob_new_from_file(lua_State *L) {
   return 1;
 }
 
+static int blob_new_from_file_or_fail(lua_State *L) {
+  Blob *b;
+  const char *file_name = luaL_checkstring(L, 1);
+  hb_blob_t *blob = hb_blob_create_from_file_or_fail(file_name);
+
+  if (!blob) {
+    lua_pushnil(L);
+  } else {
+    b = (Blob *)lua_newuserdata(L, sizeof(*b));
+    *b = blob;
+    luaL_getmetatable(L, "harfbuzz.Blob");
+    lua_setmetatable(L, -2);
+  }
+
+  return 1;
+}
+
 static int blob_get_length(lua_State *L) {
   Blob *b = (Blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
 
@@ -52,6 +69,7 @@ static const struct luaL_Reg blob_methods[] = {
 static const struct luaL_Reg blob_functions[] = {
   { "new", blob_new },
   { "new_from_file", blob_new_from_file },
+  { "new_from_file_or_fail", blob_new_from_file_or_fail },
   { NULL,  NULL }
 };
 

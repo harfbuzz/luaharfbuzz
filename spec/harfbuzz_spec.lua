@@ -16,6 +16,26 @@ describe("harfbuzz module", function()
       local blob = harfbuzz.Blob.new(s)
       assert.are_equal(string.len(s), blob:get_length())
     end)
+
+    it("can be initialized with a file", function()
+      local blob = harfbuzz.Blob.new_from_file('fonts/notonastaliq.ttf')
+      assert.are_not_equal(0, blob:get_length())
+    end)
+
+    it("can be initialized with a file", function()
+      local blob = harfbuzz.Blob.new_from_file_or_fail('fonts/notonastaliq.ttf')
+      assert.are_not_equal(0, blob:get_length())
+    end)
+
+    it("can be initialized with no-existing file and return empty blob", function()
+      local blob = harfbuzz.Blob.new_from_file('non_existing.ttf')
+      assert.are_equal(0, blob:get_length())
+    end)
+
+    it("can be initialized with no-existing file and return nil", function()
+      local blob = harfbuzz.Blob.new_from_file_or_fail('non_existing.ttf')
+      assert.is_nil(blob)
+    end)
   end)
 
   describe("harfbuzz.Face", function()
