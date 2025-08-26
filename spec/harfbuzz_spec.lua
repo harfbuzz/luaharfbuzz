@@ -1,7 +1,6 @@
 local harfbuzz = require("harfbuzz")
 
 describe("harfbuzz module", function()
-
   it("returns a valid version string", function()
     assert.are_equal("string", type(harfbuzz.version()))
   end)
@@ -27,11 +26,11 @@ describe("harfbuzz module", function()
       fontfile:close()
 
       local blob = harfbuzz.Blob.new(fontdata)
-      harfbuzz.Face.new_from_blob(blob,0)
+      harfbuzz.Face.new_from_blob(blob, 0)
     end)
 
     it("can be initialized with a file and a font index", function()
-      harfbuzz.Face.new('fonts/notonastaliq.ttf',0)
+      harfbuzz.Face.new('fonts/notonastaliq.ttf', 0)
     end)
 
     it("can be initialized with a file only", function()
@@ -39,130 +38,137 @@ describe("harfbuzz module", function()
     end)
 
     it("returns a valid upem value", function()
-      assert.are_equal(2048,face:get_upem())
+      assert.are_equal(2048, face:get_upem())
     end)
 
     it("can return SFNT table", function()
       local b = face:get_table(harfbuzz.Tag.new("OS/2"))
       local d = b:get_data()
-      assert.are_equal(96,b:get_length())
-      assert.are_equal(96,#d)
-      assert.are_equal(4,string.unpack(">H", d, 1))
-      assert.are_equal(1155,string.unpack(">h", d, 3))
-      assert.are_equal(5,string.unpack(">H", d, -2))
+      assert.are_equal(96, b:get_length())
+      assert.are_equal(96, #d)
+      assert.are_equal(4, string.unpack(">H", d, 1))
+      assert.are_equal(1155, string.unpack(">h", d, 3))
+      assert.are_equal(5, string.unpack(">H", d, -2))
     end)
 
     it("can return table tags", function()
       local t = face:get_table_tags()
-      assert.are_equal(14,#t)
-      assert.are_equal("GDEF",tostring(t[1]))
-      assert.are_equal("post",tostring(t[#t]))
+      assert.are_equal(14, #t)
+      assert.are_equal("GDEF", tostring(t[1]))
+      assert.are_equal("post", tostring(t[#t]))
     end)
 
     it("can return glyph count", function()
-      assert.are_equal(1133,face:get_glyph_count())
+      assert.are_equal(1133, face:get_glyph_count())
     end)
 
     it("can return unicode characters supported by face", function()
       local u = face:collect_unicodes()
-      assert.are_equal(267,#u)
-      assert.are_equal(0x0000,u[1])
-      assert.are_equal('0',tostring(u[1]))
-      assert.are_equal(0xFEFF,u[#u])
-      assert.are_equal('65279',tostring(u[#u]))
-      assert.are_equal('integer',math.type(u[1]))
+      assert.are_equal(267, #u)
+      assert.are_equal(0x0000, u[1])
+      assert.are_equal('0', tostring(u[1]))
+      assert.are_equal(0xFEFF, u[#u])
+      assert.are_equal('65279', tostring(u[#u]))
+      assert.are_equal('integer', math.type(u[1]))
     end)
 
     it("can return face names", function()
-      assert.are_equal("Copyright 2014 Google Inc. All Rights Reserved.",face:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT))
-      assert.are_equal("Noto Nastaliq Urdu",face:get_name(harfbuzz.ot.NAME_ID_FONT_FAMILY))
-      assert.are_equal("Regular",face:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY))
-      assert.are_equal("Noto Nastaliq Urdu",face:get_name(harfbuzz.ot.NAME_ID_FULL_NAME))
-      assert.are_equal("NotoNastaliqUrdu",face:get_name(harfbuzz.ot.NAME_ID_POSTSCRIPT_NAME))
-      assert.are_equal("Noto is a trademark of Google Inc.",face:get_name(harfbuzz.ot.NAME_ID_TRADEMARK))
-      assert.are_equal(331,#face:get_name(harfbuzz.ot.NAME_ID_LICENSE))
-      assert.are_equal(nil,face:get_name(harfbuzz.ot.NAME_ID_INVALID))
+      assert.are_equal("Copyright 2014 Google Inc. All Rights Reserved.", face:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT))
+      assert.are_equal("Noto Nastaliq Urdu", face:get_name(harfbuzz.ot.NAME_ID_FONT_FAMILY))
+      assert.are_equal("Regular", face:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY))
+      assert.are_equal("Noto Nastaliq Urdu", face:get_name(harfbuzz.ot.NAME_ID_FULL_NAME))
+      assert.are_equal("NotoNastaliqUrdu", face:get_name(harfbuzz.ot.NAME_ID_POSTSCRIPT_NAME))
+      assert.are_equal("Noto is a trademark of Google Inc.", face:get_name(harfbuzz.ot.NAME_ID_TRADEMARK))
+      assert.are_equal(331, #face:get_name(harfbuzz.ot.NAME_ID_LICENSE))
+      assert.are_equal(nil, face:get_name(harfbuzz.ot.NAME_ID_INVALID))
     end)
 
     it("can return face names with language", function()
       local f = harfbuzz.Face.new('fonts/amiri-regular.ttf')
       local ar = harfbuzz.Language.new("ar")
       local en = harfbuzz.Language.new("en")
-      assert.are_equal("حقوق النشر 2010-2015، خالد حسني <khaledhosny@eglug.org>.",f:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT, ar))
-      assert.are_equal("Copyright (c) 2010-2015, Khaled Hosny <khaledhosny@eglug.org>.\nPortions copyright (c) 2010, Sebastian Kosch <sebastian@aldusleaf.org>.",f:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT, en))
-      assert.are_equal("عادي",f:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY, ar))
-      assert.are_equal("Regular",f:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY, en))
-      assert.are_equal("إصدارة 000٫108",f:get_name(harfbuzz.ot.NAME_ID_VERSION_STRING, ar))
-      assert.are_equal("Version 000.108 ",f:get_name(harfbuzz.ot.NAME_ID_VERSION_STRING, en))
-      assert.are_equal("خالد حسني",f:get_name(harfbuzz.ot.NAME_ID_DESIGNER, ar))
-      assert.are_equal("Khaled Hosny",f:get_name(harfbuzz.ot.NAME_ID_DESIGNER, en))
-      assert.are_equal(512,#f:get_name(harfbuzz.ot.NAME_ID_DESCRIPTION, ar))
-      assert.are_equal(263,#f:get_name(harfbuzz.ot.NAME_ID_DESCRIPTION, en))
-      assert.are_equal("صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, ar))
-      assert.are_equal("صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, en))
+      assert.are_equal("حقوق النشر 2010-2015، خالد حسني <khaledhosny@eglug.org>.",
+        f:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT, ar))
+      assert.are_equal(
+        "Copyright (c) 2010-2015, Khaled Hosny <khaledhosny@eglug.org>.\nPortions copyright (c) 2010, Sebastian Kosch <sebastian@aldusleaf.org>.",
+        f:get_name(harfbuzz.ot.NAME_ID_COPYRIGHT, en))
+      assert.are_equal("عادي", f:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY, ar))
+      assert.are_equal("Regular", f:get_name(harfbuzz.ot.NAME_ID_FONT_SUBFAMILY, en))
+      assert.are_equal("إصدارة 000٫108", f:get_name(harfbuzz.ot.NAME_ID_VERSION_STRING, ar))
+      assert.are_equal("Version 000.108 ", f:get_name(harfbuzz.ot.NAME_ID_VERSION_STRING, en))
+      assert.are_equal("خالد حسني", f:get_name(harfbuzz.ot.NAME_ID_DESIGNER, ar))
+      assert.are_equal("Khaled Hosny", f:get_name(harfbuzz.ot.NAME_ID_DESIGNER, en))
+      assert.are_equal(512, #f:get_name(harfbuzz.ot.NAME_ID_DESCRIPTION, ar))
+      assert.are_equal(263, #f:get_name(harfbuzz.ot.NAME_ID_DESCRIPTION, en))
+      assert.are_equal(
+        "صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",
+        f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, ar))
+      assert.are_equal(
+        "صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",
+        f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, en))
     end)
 
     it("can check color palettes", function()
       local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
-      assert.are_equal(false,face:ot_color_has_palettes())
-      assert.are_equal(true,f:ot_color_has_palettes())
+      assert.are_equal(false, face:ot_color_has_palettes())
+      assert.are_equal(true, f:ot_color_has_palettes())
     end)
 
     it("can return number of color palettes", function()
       local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
-      assert.are_equal(0,face:ot_color_palette_get_count())
-      assert.are_equal(1,f:ot_color_palette_get_count())
+      assert.are_equal(0, face:ot_color_palette_get_count())
+      assert.are_equal(1, f:ot_color_palette_get_count())
     end)
 
     it("can return palette colors", function()
       local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
-      assert.are_equal(nil,face:ot_color_palette_get_colors())
+      assert.are_equal(nil, face:ot_color_palette_get_colors())
       local colors = {
         { alpha = 255, blue = 51,  green = 51,  red = 204, },
-        { alpha = 255, blue = 80,  green = 165, red = 0,   },
+        { alpha = 255, blue = 80,  green = 165, red = 0, },
         { alpha = 255, blue = 51,  green = 153, red = 238, },
-        { alpha = 255, blue = 153, green = 102, red = 51,  },
+        { alpha = 255, blue = 153, green = 102, red = 51, },
       }
-      assert.are_same(colors,f:ot_color_palette_get_colors())
+      assert.are_same(colors, f:ot_color_palette_get_colors())
     end)
 
     it("can check color layers", function()
       local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
-      assert.are_equal(false,face:ot_color_has_layers())
-      assert.are_equal(true,f:ot_color_has_layers())
+      assert.are_equal(false, face:ot_color_has_layers())
+      assert.are_equal(true, f:ot_color_has_layers())
     end)
 
     it("can return glyph color layers", function()
       local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
-      assert.are_equal(nil,face:ot_color_glyph_get_layers(100))
-      assert.are_equal(nil,f:ot_color_glyph_get_layers(2))
+      assert.are_equal(nil, face:ot_color_glyph_get_layers(100))
+      assert.are_equal(nil, f:ot_color_glyph_get_layers(2))
       local layers = {
         { color_index = 65535, glyph = 1341 },
         { color_index = 1,     glyph = 1370 },
       }
-      assert.are_same(layers,f:ot_color_glyph_get_layers(100))
+      assert.are_same(layers, f:ot_color_glyph_get_layers(100))
     end)
 
     it("can check PNG glyph support", function()
       local f = harfbuzz.Face.new('fonts/notocoloremoji-subset.ttf')
-      assert.are_equal(false,face:ot_color_has_png())
-      assert.are_equal(true,f:ot_color_has_png())
+      assert.are_equal(false, face:ot_color_has_png())
+      assert.are_equal(true, f:ot_color_has_png())
     end)
 
     it("can check SVG glyph support", function()
       local f = harfbuzz.Face.new('fonts/TwitterColorEmoji-SVGinOT.ttf')
-      assert.are_equal(false,face:ot_color_has_svg())
-      assert.are_equal(true,f:ot_color_has_svg())
+      assert.are_equal(false, face:ot_color_has_svg())
+      assert.are_equal(true, f:ot_color_has_svg())
     end)
 
     it("can return glyph color png", function()
       local f = harfbuzz.Face.new('fonts/TwitterColorEmoji-SVGinOT.ttf')
 
-      assert.are_equal(nil,face:ot_color_glyph_get_svg(100))
-      assert.are_equal(nil,f:ot_color_glyph_get_svg(0))
-      assert.are_same(751,f:ot_color_glyph_get_svg(5):get_length())
-      assert.are_same(804,f:ot_color_glyph_get_svg(6):get_length())
-      assert.are_same("<?xml version='1.0' encoding='UTF-8'?>",f:ot_color_glyph_get_svg(5):get_data():sub(1, 38))
+      assert.are_equal(nil, face:ot_color_glyph_get_svg(100))
+      assert.are_equal(nil, f:ot_color_glyph_get_svg(0))
+      assert.are_same(751, f:ot_color_glyph_get_svg(5):get_length())
+      assert.are_same(804, f:ot_color_glyph_get_svg(6):get_length())
+      assert.are_same("<?xml version='1.0' encoding='UTF-8'?>", f:ot_color_glyph_get_svg(5):get_data():sub(1, 38))
     end)
 
     it("can return script tags", function()
@@ -229,7 +235,8 @@ describe("harfbuzz module", function()
       assert.True(r)
       assert.are_same(13, i)
 
-      r, i = face:ot_layout_find_feature(harfbuzz.Tag.new("GSUB"), 1, harfbuzz.ot.LAYOUT_DEFAULT_LANGUAGE_INDEX, harfbuzz.Tag.new("rlig"))
+      r, i = face:ot_layout_find_feature(harfbuzz.Tag.new("GSUB"), 1, harfbuzz.ot.LAYOUT_DEFAULT_LANGUAGE_INDEX,
+        harfbuzz.Tag.new("rlig"))
       assert.True(r)
       assert.are_same(13, i)
     end)
@@ -282,11 +289,11 @@ describe("harfbuzz module", function()
       assert.are_same(0, normalized)
 
       normalized = f:ot_var_normalize_variations(harfbuzz.Variation.new("wght=700"))
-      assert.are_same(1<<14, normalized)
+      assert.are_same(1 << 14, normalized)
 
       normalized, after = f:ot_var_normalize_coords(700)
       assert.is_nil(after)
-      assert.are_same(1<<14, normalized)
+      assert.are_same(1 << 14, normalized)
 
       normalized = f:ot_var_normalize_coords(400)
       assert.are_same(0, normalized)
@@ -309,7 +316,7 @@ describe("harfbuzz module", function()
 
     it("can set the scale of the font using set_scale", function()
       local font = harfbuzz.Font.new(face)
-      font:set_scale(1024,2048)
+      font:set_scale(1024, 2048)
       local xs, ys = font:get_scale()
       assert.are_equal(1024, xs)
       assert.are_equal(2048, ys)
@@ -373,11 +380,11 @@ describe("harfbuzz module", function()
       local font = harfbuzz.Font.new(face)
       local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/notocoloremoji-subset.ttf'))
 
-      assert.are_equal(nil,font:ot_color_glyph_get_png(100))
-      assert.are_equal(nil,f:ot_color_glyph_get_png(0))
-      assert.are_same(2233,f:ot_color_glyph_get_png(1):get_length())
-      assert.are_same(2857,f:ot_color_glyph_get_png(2):get_length())
-      assert.are_same("\137PNG",f:ot_color_glyph_get_png(2):get_data():sub(1, 4))
+      assert.are_equal(nil, font:ot_color_glyph_get_png(100))
+      assert.are_equal(nil, f:ot_color_glyph_get_png(0))
+      assert.are_same(2233, f:ot_color_glyph_get_png(1):get_length())
+      assert.are_same(2857, f:ot_color_glyph_get_png(2):get_length())
+      assert.are_same("\137PNG", f:ot_color_glyph_get_png(2):get_data():sub(1, 4))
     end)
 
     it("can set variations", function()
@@ -393,16 +400,16 @@ describe("harfbuzz module", function()
       assert.is_nil(after2)
       assert.are_same(10348, normalized2)
 
-      f:set_var_coords_normalized(1<<13)
+      f:set_var_coords_normalized(1 << 13)
       local normalized3, after3 = f:get_var_coords_normalized()
       assert.is_nil(after3)
-      assert.are_same(1<<13, normalized3)
+      assert.are_same(1 << 13, normalized3)
     end)
 
-    if not harfbuzz:version():match'^2%.' then
+    if not harfbuzz:version():match '^2%.' then
       it("allows querying style parameters", function()
         local font = harfbuzz.Font.new(face)
-        local wght = font:style_get_value(harfbuzz.Tag.new"wght")
+        local wght = font:style_get_value(harfbuzz.Tag.new "wght")
         assert.are_equal(400, wght)
       end)
     end
@@ -411,8 +418,8 @@ describe("harfbuzz module", function()
       local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/STIXTwoText[wght].ttf'))
       f:set_variations(harfbuzz.Variation.new("wght=500"))
 
-      local subscript_offset = f:ot_metrics_get_x_variation(harfbuzz.Tag.new"sbxo")
-      local cap_height = f:ot_metrics_get_y_variation(harfbuzz.Tag.new"cpht")
+      local subscript_offset = f:ot_metrics_get_x_variation(harfbuzz.Tag.new "sbxo")
+      local cap_height = f:ot_metrics_get_y_variation(harfbuzz.Tag.new "cpht")
       assert.are_equal(0, cap_height)
       assert.are_equal(0, subscript_offset)
     end)
@@ -425,8 +432,8 @@ describe("harfbuzz module", function()
     end)
 
     it("throws an error when trying to initialise a new Feature with an invalid string", function()
-       assert.are_equal(nil, harfbuzz.Feature.new(''))
-       assert.are_equal(nil, harfbuzz.Feature.new('#kern'))
+      assert.are_equal(nil, harfbuzz.Feature.new(''))
+      assert.are_equal(nil, harfbuzz.Feature.new('#kern'))
     end)
 
     it("has a valid tostring value", function()
@@ -451,10 +458,10 @@ describe("harfbuzz module", function()
 
     it("has editable fields", function()
       local f = harfbuzz.Feature.new('-kern')
-      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new"aalt", 4, 3, 5
+      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new "aalt", 4, 3, 5
       assert.are_equal(tostring(f), "aalt[3:5]=4")
 
-      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new"harf", 0, nil, nil
+      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new "harf", 0, nil, nil
       assert.are_equal(tostring(f), "-harf")
     end)
   end)
@@ -467,8 +474,8 @@ describe("harfbuzz module", function()
     end)
 
     it("throws an error when trying to initialise a new variation with an invalid string", function()
-       assert.are_equal(nil, harfbuzz.Variation.new(''))
-       assert.are_equal(nil, harfbuzz.Variation.new('wght'))
+      assert.are_equal(nil, harfbuzz.Variation.new(''))
+      assert.are_equal(nil, harfbuzz.Variation.new('wght'))
     end)
 
     it("has a valid tostring value", function()
@@ -489,10 +496,10 @@ describe("harfbuzz module", function()
 
     it("has editable fields", function()
       local f = harfbuzz.Variation.new('slnt=5')
-      f.tag, f.value = harfbuzz.Tag.new"wght", 7
+      f.tag, f.value = harfbuzz.Tag.new "wght", 7
       assert.are_equal(tostring(f), "wght=7")
 
-      f.tag, f.value = harfbuzz.Tag.new"hght", 0
+      f.tag, f.value = harfbuzz.Tag.new "hght", 0
       assert.are_equal(tostring(f), "hght=0")
     end)
   end)
@@ -665,7 +672,7 @@ describe("harfbuzz module", function()
   end)
 
   describe("harfbuzz.unicode", function()
-    describe("script function returns a valid script for a codepoint",function()
+    describe("script function returns a valid script for a codepoint", function()
       local s = harfbuzz.unicode.script(0x0020)
       assert.are_equal(harfbuzz.Script.COMMON, s)
       s = harfbuzz.unicode.script(0x0041)
