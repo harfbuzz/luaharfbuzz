@@ -12,7 +12,7 @@
 --    local hb = require('harfbuzz')
 --    local hb_subset  = require("harfbuzzsubset")
 --
---    local input = hb_subset.subset.create()
+--    local input = hb_subset.SubsetInput.new()
 --
 --    local wght = hb.Tag.new("wght")
 --    local wdth = hb.Tag.new("wdth")
@@ -29,11 +29,6 @@
 --    if not fh then error(err) end
 --    fh:write(blob:get_data())
 --    fh:close()
---
--- The module returned by `require "harfbuzzsubset"` has two fields:
---
---   * `subset_input` — helpers and methods related to @{SubsetInput}
---   * `subset` — helpers and methods related to @{SubsetInput}
 --
 -- @author Patrick Gundlach <<gundlach@speedata.de>>
 -- @copyright 2025

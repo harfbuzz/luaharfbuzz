@@ -431,6 +431,20 @@
 -- @field Language.INVALID
 
 
+--- Lua wrapper for `hb_set_t` type.
+--
+-- Set objects represent a mathematical set of integer values.
+--
+-- @type Set
+
+--- Wraps `hb_set_add`.
+--
+-- Adds a codepoint to the set.
+--
+-- @param codepoint The element to add.
+-- @function Set:add
+
+
 --- Unicode functions.
 -- @section unicode-functions
 
@@ -533,17 +547,3 @@
 
 --- Wraps `HB_OT_LAYOUT_NO_VARIATIONS_INDEX`
 -- @field ot.LAYOUT_NO_VARIATIONS_INDEX
-
-
---- Lua wrapper for `hb_set_t` type.
---
--- Set objects represent a mathematical set of integer values.
---
--- @type Set
-
---- Wraps `hb_set_add`.
---
--- Adds a codepoint to the set.
---
--- @param codepoint The element to add.
--- @function Set:add

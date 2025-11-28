@@ -34,7 +34,7 @@ int luaopen_luaharfbuzzsubset (lua_State *L) {
   lua_newtable(L);
 
   register_subset_input(L);
-  lua_setfield(L, -2, "subset_input");
+  lua_setfield(L, -2, "SubsetInput");
 
   luaL_setfuncs(L, lib_table, 0);
 
