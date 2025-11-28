@@ -18,11 +18,12 @@
 --    local wdth = hb.Tag.new("wdth")
 --    local face = hb.Face.new("myfont.ttf")
 --
---    input:pin_axis_location(face,wght, 100)
---    input:pin_axis_location(face,wdth, 100)
+--    input:pin_axis_location(face, wght, 100)
+--    input:pin_axis_location(face, wdth, 100)
 --
 --    input:keep_everything()
---    new_face = hb_subset.subset(face, input)
+--
+--    local new_face = hb_subset.subset(face, input)
 --
 --    local blob = new_face:blob()
 --    local fh, err = io.open("out.ttf", "wb")
@@ -55,7 +56,7 @@
 -- Objects of this type control which parts of a `Face` are kept when
 -- creating a subset.
 --
--- Instances are usually created via @{subset_input.new}.
+-- Instances are usually created via @{SubsetInput.new}.
 --
 -- @type SubsetInput
 
@@ -66,7 +67,7 @@
 -- configure which glyphs and features are kept when subsetting a face.
 --
 -- @return `SubsetInput` object, or `nil` on failure.
--- @function subset_input.new
+-- @function SubsetInput.new
 
 
 --- Wraps `hb_subset_input_unicode_set`.
