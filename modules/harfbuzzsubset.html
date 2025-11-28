@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>luaharfbuzz Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>luaharfbuzz</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Class_SubsetInput">Class SubsetInput </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/harfbuzz.html">harfbuzz</a></li>
+  <li><strong>harfbuzzsubset</strong></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="../examples/core_types.lua.html">core_types.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>harfbuzzsubset</code></h1>
+<p>Lua bindings to the Harfbuzz subset API.</p>
+<p>
+
+<ul>
+    <li><a href="http://github.com/harfbuzz/luaharfbuzz/wiki">Wiki</a></li>
+    <li><a href="https://github.com/harfbuzz/luaharfbuzz">Source on Github</a></li>
+    <li><a href="https://github.com/harfbuzz/luaharfbuzz/blob/master/status/done.txt">API Coverage Status</a></li>
+</ul>
+
+<p> This module provides bindings to the HarfBuzz <code>hb-subset</code> API. It is
+ designed to be used together with the main <a href="../modules/harfbuzz.html#">harfbuzz</a> module.</p>
+
+<p> Typical usage:</p>
+
+
+<pre>
+<span class="keyword">local</span> hb = <span class="global">require</span>(<span class="string">'harfbuzz'</span>)
+<span class="keyword">local</span> hb_subset  = <span class="global">require</span>(<span class="string">"harfbuzzsubset"</span>)
+
+<span class="keyword">local</span> input = hb_subset.subset.<span class="function-name">create</span>()
+
+<span class="keyword">local</span> wght = hb.Tag.<span class="function-name">new</span>(<span class="string">"wght"</span>)
+<span class="keyword">local</span> wdth = hb.Tag.<span class="function-name">new</span>(<span class="string">"wdth"</span>)
+<span class="keyword">local</span> face = hb.Face.<span class="function-name">new</span>(<span class="string">"myfont.ttf"</span>)
+
+input:<span class="function-name">pin_axis_location</span>(face,wght, <span class="number">100</span>)
+input:<span class="function-name">pin_axis_location</span>(face,wdth, <span class="number">100</span>)
+
+input:<span class="function-name">keep_everything</span>()
+new_face = hb_subset.<span class="function-name">subset</span>(face, input)
+
+<span class="keyword">local</span> blob = new_face:<span class="function-name">blob</span>()
+<span class="keyword">local</span> fh, err = <span class="global">io</span>.<span class="function-name">open</span>(<span class="string">"out.ttf"</span>, <span class="string">"wb"</span>)
+<span class="keyword">if</span> <span class="keyword">not</span> fh <span class="keyword">then</span> <span class="global">error</span>(err) <span class="keyword">end</span>
+fh:<span class="function-name">write</span>(blob:<span class="function-name">get_data</span>())
+fh:<span class="function-name">close</span>()
+</pre>
+
+<p> The module returned by <code>require "harfbuzzsubset"</code> has two fields:</p>
+
+<ul>
+    <li><code>subset_input</code> — helpers and methods related to <a href="../modules/harfbuzzsubset.html#SubsetInput">SubsetInput</a></li>
+    <li><code>subset</code> — helpers and methods related to <a href="../modules/harfbuzzsubset.html#SubsetInput">SubsetInput</a></li>
+</ul>
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2025</li>
+        <li><strong>License</strong>: MIT</li>
+        <li><strong>Author</strong>: Patrick Gundlach <<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;g&#117;&#x6e;&#100;&#x6c;&#97;&#x63;&#104;&#x40;s&#112;&#x65;&#101;&#x64;&#97;&#x74;&#97;&#x2e;&#100;&#x65;">&#x67;&#117;&#x6e;&#100;&#x6c;&#97;&#x63;h&#64;&#x73;&#112;&#x65;&#101;&#x64;&#97;&#x74;a&#46;&#x64;&#101;</a>></li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#subset">subset (face, input)</a></td>
+	<td class="summary">Wraps <code>hb_subset_or_fail</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#version">version ()</a></td>
+	<td class="summary">Wraps <code>hb_version</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_SubsetInput">Class SubsetInput </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#subset_input.new">subset_input.new ()</a></td>
+	<td class="summary">Wraps <code>hb_subset_input_create_or_fail</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SubsetInput:unicode_set">SubsetInput:unicode_set ()</a></td>
+	<td class="summary">Wraps <code>hb_subset_input_unicode_set</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SubsetInput:pin_axis_location">SubsetInput:pin_axis_location (face, tag, value)</a></td>
+	<td class="summary">Wraps <code>hb_subset_input_pin_axis_location</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SubsetInput:keep_everything">SubsetInput:keep_everything ()</a></td>
+	<td class="summary">Wraps <code>hb_subset_input_keep_everything</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SubsetInput:__gc">SubsetInput:__gc ()</a></td>
+	<td class="summary">Wraps <code>hb_subset_input_destroy</code>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "subset"></a>
+    <strong>subset (face, input)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_or_fail</code>. </p>
+
+<p> Performs the actual subset operation, producing a new <code>Face</code> that only
+ contains the glyphs and data configured on this input.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">face</span>
+         source <code>Face</code> object to subset.
+        </li>
+        <li><span class="parameter">input</span>
+         <code>SubsetInput</code> object to subset based on.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new <code>Face</code> object representing the subset, or <code>nil</code> on failure.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "version"></a>
+    <strong>version ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_version</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_SubsetInput"></a>Class SubsetInput </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_subset_input_t</code> type. </p>
+
+<p> Objects of this type control which parts of a <code>Face</code> are kept when
+ creating a subset.</p>
+
+<p> Instances are usually created via <a href="../modules/harfbuzzsubset.html#subset_input.new">subset_input.new</a>.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "subset_input.new"></a>
+    <strong>subset_input.new ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_input_create_or_fail</code>. </p>
+
+<p> Initializes a new <code>hb_subset_input_t</code>. The returned object can be used to
+ configure which glyphs and features are kept when subsetting a face.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>SubsetInput</code> object, or <code>nil</code> on failure.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SubsetInput:unicode_set"></a>
+    <strong>SubsetInput:unicode_set ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_input_unicode_set</code>. </p>
+
+<p> Returns the Unicode set associated with this subset input. The returned
+ <a href="../modules/harfbuzz.html#Set">harfbuzz.Set</a> can be modified (e.g. via <a href="../modules/harfbuzz.html#Set:add">add</a>) to control which
+ Unicode codepoints are included in the subset.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>Set</code> object representing the Unicode set, or <code>nil</code> on failure.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SubsetInput:pin_axis_location"></a>
+    <strong>SubsetInput:pin_axis_location (face, tag, value)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_input_pin_axis_location</code>. </p>
+
+<p> Pins a variation axis at a specific value for subsetting.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">face</span>
+         <code>Face</code> object whose design space is being subset.
+        </li>
+        <li><span class="parameter">tag</span>
+         <code>Tag</code> object representing the axis tag (e.g. <code>"wght"</code>, <code>"wdth"</code>).
+        </li>
+        <li><span class="parameter">value</span>
+         numeric axis value to pin.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> on success, <code>false</code> on failure.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SubsetInput:keep_everything"></a>
+    <strong>SubsetInput:keep_everything ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_input_keep_everything</code>. </p>
+
+<p> Configures the input so that everything in the original face is kept.
+ This is useful as a starting point before applying more specific filters.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SubsetInput:__gc"></a>
+    <strong>SubsetInput:__gc ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_subset_input_destroy</code>. </p>
+
+<p> Destructor for subset inputs. Normally this is invoked automatically by
+ the garbage collector; applications rarely need to call it directly.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2025-11-28 10:38:23 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
