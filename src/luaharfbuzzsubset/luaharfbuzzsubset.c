@@ -1,6 +1,6 @@
 #include "luaharfbuzzsubset.h"
 
-int subset(lua_State *L) {
+static int subset(lua_State *L) {
   // arguments: face and input
   Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
   SubsetInput *input = (SubsetInput*)luaL_checkudata(L, 2, "harfbuzz.SubsetInput");
@@ -19,7 +19,7 @@ int subset(lua_State *L) {
   return 1;
 }
 
-int version (lua_State *L) {
+static int version (lua_State *L) {
   lua_pushstring(L, hb_version_string());
   return 1;
 }
