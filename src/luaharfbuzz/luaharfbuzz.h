@@ -14,3 +14,5 @@ int register_variation(lua_State *L);
 int register_ot(lua_State *L);
 int register_unicode(lua_State *L);
 int register_set(lua_State *L);
+
+int luaopen_luaharfbuzz (lua_State *L);
