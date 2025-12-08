@@ -492,7 +492,7 @@ static int face_var_get_axis_infos(lua_State *L) {
     hb_ot_var_get_axis_infos(*face, start, &count, axis_infos);
 
     lua_createtable(L, count, 0);
-    for (int i = 0; i != count; i++) {
+    for (unsigned int i = 0; i != count; i++) {
       push_axis_info(L, axis_infos + i);
       lua_seti(L, -2, i + 1);
     }
@@ -549,7 +549,7 @@ static int face_var_named_instance_get_design_coords(lua_State *L) {
   unsigned int count = STATIC_ARRAY_SIZE;
   count = hb_ot_var_named_instance_get_design_coords(*face, index, &count, coords);
 
-  for (int i = 0; i != count; i++) {
+  for (unsigned int i = 0; i != count; i++) {
     lua_pushnumber(L, coords[i]);
   }
   return count;
@@ -570,7 +570,7 @@ static int face_var_normalize_variations(lua_State *L) {
   int normalized[STATIC_ARRAY_SIZE];
   hb_ot_var_normalize_variations(*face, variations, count, normalized, coord_count);
 
-  for (int i = 0; i != coord_count; i++) {
+  for (unsigned int i = 0; i != coord_count; i++) {
     lua_pushinteger(L, normalized[i]);
   }
   return coord_count;
@@ -590,7 +590,7 @@ static int face_var_normalize_coords(lua_State *L) {
   int normalized[STATIC_ARRAY_SIZE];
   hb_ot_var_normalize_coords(*face, count, coords, normalized);
 
-  for (int i = 0; i != count; i++) {
+  for (unsigned int i = 0; i != count; i++) {
     lua_pushinteger(L, normalized[i]);
   }
   return count;

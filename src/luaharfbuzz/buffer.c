@@ -143,7 +143,7 @@ static int buffer_add_codepoints(lua_State *L) {
   item_offset = luaL_optinteger(L, 3, 0);
   item_length = luaL_optinteger(L, 4, -1);
 
-  int n = lua_rawlen(L, 2);
+  unsigned int n = lua_rawlen(L, 2);
 
   hb_codepoint_t *text = (hb_codepoint_t *) malloc(n * sizeof(hb_codepoint_t));
 
