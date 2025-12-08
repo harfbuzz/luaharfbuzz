@@ -249,7 +249,7 @@ static int font_set_variations(lua_State *L) {
   if (count > 128)
     count = 128;
   Variation variations[128];
-  for (int i = 0; i != count; i++)
+  for (unsigned int i = 0; i != count; i++)
     variations[i] = *(Variation *)luaL_checkudata(L, i + 2, "harfbuzz.Variation");
 
   hb_font_set_variations(*f, variations, count);
@@ -262,7 +262,7 @@ static int font_set_var_coords_design(lua_State *L) {
   if (count > 128)
     count = 128;
   float coords[128];
-  for (int i = 0; i != count; i++)
+  for (unsigned int i = 0; i != count; i++)
     coords[i] = luaL_checknumber(L, i + 2);
 
   hb_font_set_var_coords_design(*f, coords, count);
@@ -275,7 +275,7 @@ static int font_set_var_coords_normalized(lua_State *L) {
   if (count > 128)
     count = 128;
   int coords[128];
-  for (int i = 0; i != count; i++)
+  for (unsigned int i = 0; i != count; i++)
     coords[i] = luaL_checkinteger(L, i + 2);
 
   hb_font_set_var_coords_normalized(*f, coords, count);
@@ -294,7 +294,7 @@ static int font_get_var_coords_normalized(lua_State *L) {
   Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
   unsigned int count;
   const int *coords = hb_font_get_var_coords_normalized(*f, &count);
-  for (int i = 0; i != count; i++)
+  for (unsigned int i = 0; i != count; i++)
     lua_pushinteger(L, coords[i]);
   return count;
 }
