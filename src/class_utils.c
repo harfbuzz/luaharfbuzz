@@ -15,13 +15,17 @@ int register_class(lua_State *L, const char *name, const luaL_Reg *methods, cons
   }
 
   luaL_setfuncs(L, methods, 0);
-  lua_pop(L, 1);
 
   lua_newtable(L);
   luaL_setfuncs(L, functions, 0);
 
-  luaL_getmetatable(L, name);
+  /* The class table only needs access to the instance metatable for constants;
+     keep its own metatable light to avoid triggering instance metamethods. */
+  lua_newtable(L);
+  lua_pushvalue(L, -3);
+  lua_setfield(L, -2, "__index");
   lua_setmetatable(L, -2);
+
+  lua_remove(L, -2);
   return 1;
 }
-
