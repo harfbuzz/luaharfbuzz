@@ -39,6 +39,8 @@
 <li><a href="#Class_Font">Class Font </a></li>
 <li><a href="#Class_Buffer">Class Buffer </a></li>
 <li><a href="#Cluster_Levels">Cluster Levels </a></li>
+<li><a href="#Buffer_Flags">Buffer Flags </a></li>
+<li><a href="#Glyph_Flags">Glyph Flags </a></li>
 <li><a href="#Class_Feature">Class Feature </a></li>
 <li><a href="#Class_Tag">Class Tag </a></li>
 <li><a href="#Class_Script">Class Script </a></li>
@@ -326,9 +328,63 @@
 	<td class="name" nowrap><a href="#Buffer.CLUSTER_LEVEL_DEFAULT">Buffer.CLUSTER_LEVEL_DEFAULT</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
 	</tr>
+</table>
+<h2><a href="#Buffer_Flags">Buffer Flags </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_DEFAULT">Buffer.FLAG_DEFAULT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_DEFAULT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_BOT">Buffer.FLAG_BOT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_BOT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_EOT">Buffer.FLAG_EOT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_EOT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_PRESERVE_DEFAULT_IGNORABLES">Buffer.FLAG_PRESERVE_DEFAULT_IGNORABLES</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_REMOVE_DEFAULT_IGNORABLES">Buffer.FLAG_REMOVE_DEFAULT_IGNORABLES</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_DO_NOT_INSERT_DOTTED_CIRCLE">Buffer.FLAG_DO_NOT_INSERT_DOTTED_CIRCLE</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_VERIFY">Buffer.FLAG_VERIFY</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_VERIFY</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_PRODUCE_UNSAFE_TO_CONCAT">Buffer.FLAG_PRODUCE_UNSAFE_TO_CONCAT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL">Buffer.FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.FLAG_DEFINED">Buffer.FLAG_DEFINED</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_FLAG_DEFINED</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Glyph_Flags">Glyph Flags </a></h2>
+<table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK">Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK</a></td>
 	<td class="summary">Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_BREAK</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_UNSAFE_TO_CONCAT">Buffer.GLYPH_FLAG_UNSAFE_TO_CONCAT</a></td>
+	<td class="summary">Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_CONCAT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL">Buffer.GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL</a></td>
+	<td class="summary">Wraps <code>HB_GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL</code>.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_DEFINED">Buffer.GLYPH_FLAG_DEFINED</a></td>
@@ -1741,12 +1797,188 @@
 
 
 </dd>
+</dl>
+    <h2 class="section-header "><a name="Buffer_Flags"></a>Buffer Flags </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Buffer.FLAG_DEFAULT"></a>
+    <strong>Buffer.FLAG_DEFAULT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_DEFAULT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_BOT"></a>
+    <strong>Buffer.FLAG_BOT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_BOT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_EOT"></a>
+    <strong>Buffer.FLAG_EOT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_EOT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_PRESERVE_DEFAULT_IGNORABLES"></a>
+    <strong>Buffer.FLAG_PRESERVE_DEFAULT_IGNORABLES</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_REMOVE_DEFAULT_IGNORABLES"></a>
+    <strong>Buffer.FLAG_REMOVE_DEFAULT_IGNORABLES</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_DO_NOT_INSERT_DOTTED_CIRCLE"></a>
+    <strong>Buffer.FLAG_DO_NOT_INSERT_DOTTED_CIRCLE</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_VERIFY"></a>
+    <strong>Buffer.FLAG_VERIFY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_VERIFY</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_PRODUCE_UNSAFE_TO_CONCAT"></a>
+    <strong>Buffer.FLAG_PRODUCE_UNSAFE_TO_CONCAT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_PRODUCE_UNSAFE_TO_CONCAT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL"></a>
+    <strong>Buffer.FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_PRODUCE_SAFE_TO_INSERT_TATWEEL</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.FLAG_DEFINED"></a>
+    <strong>Buffer.FLAG_DEFINED</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_FLAG_DEFINED</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Glyph_Flags"></a>Glyph Flags </h2>
+
+    <dl class="function">
     <dt>
     <a name = "Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK"></a>
     <strong>Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK</strong>
     </dt>
     <dd>
     Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_BREAK</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.GLYPH_FLAG_UNSAFE_TO_CONCAT"></a>
+    <strong>Buffer.GLYPH_FLAG_UNSAFE_TO_CONCAT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_CONCAT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL"></a>
+    <strong>Buffer.GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_GLYPH_FLAG_SAFE_TO_INSERT_TATWEEL</code>.
 
 
 
@@ -2866,7 +3098,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
-<i style="float:right;">Last updated 2025-12-09 22:16:09 </i>
+<i style="float:right;">Last updated 2026-06-19 13:10:27 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
