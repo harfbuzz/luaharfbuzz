@@ -265,7 +265,7 @@
 --  @function Buffer:get_glyphs
 
 --- Cluster Levels.
--- See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details
+-- See [Harfbuzz docs](https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-buffer-cluster-level-t) for more details
 -- about what each of these levels mean.
 --  @section cluster-levels
 
@@ -282,6 +282,8 @@
 --  @field Buffer.CLUSTER_LEVEL_DEFAULT
 
 --- Buffer Flags.
+-- See [Harfbuzz docs](https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-buffer-flags-t) for more details
+-- about what each of these flags mean.
 --  @section buffer-flags
 
 --- Wraps `HB_BUFFER_FLAG_DEFAULT`.
@@ -315,6 +317,8 @@
 -- @field Buffer.FLAG_DEFINED
 
 --- Glyph Flags.
+-- See [Harfbuzz docs](https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-glyph-flags-t) for more details
+-- about what each of these flags mean.
 --  @section glyph-flags
 
 --- Wraps `HB_GLYPH_FLAG_UNSAFE_TO_BREAK`.
