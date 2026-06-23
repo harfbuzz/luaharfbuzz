@@ -42,6 +42,7 @@
 <li><a href="#Buffer_Flags">Buffer Flags </a></li>
 <li><a href="#Glyph_Flags">Glyph Flags </a></li>
 <li><a href="#Class_Feature">Class Feature </a></li>
+<li><a href="#Class_Variation">Class Variation </a></li>
 <li><a href="#Class_Tag">Class Tag </a></li>
 <li><a href="#Class_Script">Class Script </a></li>
 <li><a href="#Predefined_Script_Codes">Predefined Script Codes </a></li>
@@ -128,6 +129,14 @@
 	<td class="summary">Create a new <code>Face</code> from a file.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#Face:blob">Face:blob ()</a></td>
+	<td class="summary">Wraps <code>hb_face_reference_blob</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:get_name">Face:get_name (name_id[, lang])</a></td>
+	<td class="summary">Wraps <code>hb_ot_name_get_utf8</code>.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Face:collect_unicodes">Face:collect_unicodes ()</a></td>
 	<td class="summary">Wraps <code>hb_face_collect_unicodes</code>.</td>
 	</tr>
@@ -156,7 +165,7 @@
 	<td class="summary">Wraps <code>hb_ot_color_palette_get_count</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_color_palette_get_colors">Face:ot_color_palette_get_colors ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_color_palette_get_colors">Face:ot_color_palette_get_colors ([palette_index=1])</a></td>
 	<td class="summary">Wraps <code>hb_ot_color_palette_get_colors</code>.</td>
 	</tr>
 	<tr>
@@ -164,7 +173,7 @@
 	<td class="summary">Wraps <code>hb_ot_color_has_layers</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_color_glyph_get_layers">Face:ot_color_glyph_get_layers ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_color_glyph_get_layers">Face:ot_color_glyph_get_layers (glyph)</a></td>
 	<td class="summary">Wraps <code>hb_ot_color_glyph_get_layers</code>.</td>
 	</tr>
 	<tr>
@@ -172,27 +181,63 @@
 	<td class="summary">Wraps <code>hb_ot_color_has_png</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_get_script_tags">Face:ot_layout_get_script_tags ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_color_has_svg">Face:ot_color_has_svg ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_has_svg</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_glyph_get_svg">Face:ot_color_glyph_get_svg (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_glyph_reference_svg</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_has_data">Face:ot_var_has_data ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_has_data</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_find_axis_info">Face:ot_var_find_axis_info (tag)</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_find_axis_info</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_get_axis_infos">Face:ot_var_get_axis_infos ([start=1[, stop=-1]])</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_get_axis_infos</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_named_instance_get_infos">Face:ot_var_named_instance_get_infos ([start=1[, stop=-1]])</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_get_named_instance_count</code> and related functions.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_named_instance_get_design_coords">Face:ot_var_named_instance_get_design_coords (index)</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_named_instance_get_design_coords</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_normalize_variations">Face:ot_var_normalize_variations (...)</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_normalize_variations</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_var_normalize_coords">Face:ot_var_normalize_coords (...)</a></td>
+	<td class="summary">Wraps <code>hb_ot_var_normalize_coords</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_script_tags">Face:ot_layout_get_script_tags (table_tag)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_table_get_script_tags</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_get_language_tags">Face:ot_layout_get_language_tags ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_language_tags">Face:ot_layout_get_language_tags (table_tag, script_index)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_script_get_language_tags</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_get_feature_tags">Face:ot_layout_get_feature_tags ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_feature_tags">Face:ot_layout_get_feature_tags (table_tag, script_index, language_index)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_language_get_feature_tags</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_find_script">Face:ot_layout_find_script ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_script">Face:ot_layout_find_script (table_tag, script_tag)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_table_find_script</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_find_language">Face:ot_layout_find_language ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_language">Face:ot_layout_find_language (table_tag, script_index, language_tag)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_script_find_language</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face:ot_layout_find_feature">Face:ot_layout_find_feature ()</a></td>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_feature">Face:ot_layout_find_feature (table_tag, script_index, language_index, feature_tag)</a></td>
 	<td class="summary">Wraps <code>hb_ot_layout_language_find_feature</code>.</td>
 	</tr>
 </table>
@@ -243,8 +288,48 @@
 	<td class="summary">Wraps <code>hb_font_get_nominal_glyph</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Font:ot_color_glyph_get_png">Font:ot_color_glyph_get_png ()</a></td>
+	<td class="name" nowrap><a href="#Font:style_get_value">Font:style_get_value (tag)</a></td>
+	<td class="summary">Wraps <code>hb_style_get_value</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_color_glyph_get_png">Font:ot_color_glyph_get_png (glyph)</a></td>
 	<td class="summary">Wraps <code>hb_ot_color_glyph_get_png</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_metrics_get_position">Font:ot_metrics_get_position (tag)</a></td>
+	<td class="summary">Wraps <code>hb_ot_metrics_get_position</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_metrics_get_variation">Font:ot_metrics_get_variation (tag)</a></td>
+	<td class="summary">Wraps <code>hb_ot_metrics_get_variation</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_metrics_get_x_variation">Font:ot_metrics_get_x_variation (tag)</a></td>
+	<td class="summary">Wraps <code>hb_ot_metrics_get_x_variation</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_metrics_get_y_variation">Font:ot_metrics_get_y_variation (tag)</a></td>
+	<td class="summary">Wraps <code>hb_ot_metrics_get_y_variation</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:set_variations">Font:set_variations (...)</a></td>
+	<td class="summary">Wraps <code>hb_font_set_variations</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:set_var_coords_design">Font:set_var_coords_design (...)</a></td>
+	<td class="summary">Wraps <code>hb_font_set_var_coords_design</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:set_var_coords_normalized">Font:set_var_coords_normalized (...)</a></td>
+	<td class="summary">Wraps <code>hb_font_set_var_coords_normalized</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:set_var_named_instance">Font:set_var_named_instance (index)</a></td>
+	<td class="summary">Wraps <code>hb_font_set_var_named_instance</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_var_coords_normalized">Font:get_var_coords_normalized ()</a></td>
+	<td class="summary">Wraps <code>hb_font_get_var_coords_normalized</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Buffer">Class Buffer </a></h2>
@@ -252,6 +337,10 @@
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.new">Buffer.new ()</a></td>
 	<td class="summary">Wraps <code>hb_buffer_create</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:add">Buffer:add (codepoint, cluster)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_add</code>.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer:add_utf8">Buffer:add_utf8 (text[, item_offset=0[, item_length=-1]])</a></td>
@@ -286,24 +375,60 @@
 	<td class="summary">Wraps <code>hb_buffer_get_language</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer:reverse">Buffer:reverse ()</a></td>
-	<td class="summary">Wraps <code>hb_buffer_reverse</code>.</td>
+	<td class="name" nowrap><a href="#Buffer:set_flags">Buffer:set_flags (flags)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_flags</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer:get_length">Buffer:get_length ()</a></td>
-	<td class="summary">Wraps <code>hb_buffer_get_length</code>.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Buffer:get_cluster_level">Buffer:get_cluster_level ()</a></td>
-	<td class="summary">Wraps <code>hb_buffer_get_cluster_level</code>.</td>
+	<td class="name" nowrap><a href="#Buffer:get_flags">Buffer:get_flags ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_flags</code>.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer:set_cluster_level">Buffer:set_cluster_level (level)</a></td>
 	<td class="summary">Wraps <code>hb_buffer_set_cluster_level</code>.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_cluster_level">Buffer:get_cluster_level ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_cluster_level</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_invisible_glyph">Buffer:set_invisible_glyph (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_invisible_glyph</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_invisible_glyph">Buffer:get_invisible_glyph ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_invisible_glyph</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_replacement_codepoint">Buffer:set_replacement_codepoint (codepoint)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_replacement_codepoint</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_replacement_codepoint">Buffer:get_replacement_codepoint ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_replacement_codepoint</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_length">Buffer:get_length ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_length</code>.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Buffer:guess_segment_properties">Buffer:guess_segment_properties ()</a></td>
 	<td class="summary">Wraps <code>hb_buffer_guess_segment_properties</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:reverse">Buffer:reverse ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_reverse</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:clear_contents">Buffer:clear_contents ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_clear_contents</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:reset">Buffer:reset ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_reset</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:pre_allocate">Buffer:pre_allocate (size)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_pre_allocate</code>.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer:get_glyphs">Buffer:get_glyphs ()</a></td>
@@ -400,6 +525,17 @@
 	<tr>
 	<td class="name" nowrap><a href="#Feature:__tostring">Feature:__tostring ()</a></td>
 	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Variation">Class Variation </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Variation.new">Variation.new (variation_string)</a></td>
+	<td class="summary">Wraps <code>hb_variation_from_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Variation:__tostring">Variation:__tostring ()</a></td>
+	<td class="summary">Wraps <code>hb_variation_to_string</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Tag">Class Tag </a></h2>
@@ -738,7 +874,8 @@
     <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob </h2>
 
           <div class="section-description">
-          Lua wrapper for <code>hb_blob_t</code> type
+          Lua wrapper for <code>hb_blob_t</code> type.
+  Wraps binary data such as font file contents or raw font table data.
           </div>
     <dl class="function">
     <dt>
@@ -757,6 +894,11 @@
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Blob</code> object holding the binary data.
+    </ol>
 
 
 
@@ -778,6 +920,11 @@
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Blob</code> object holding the file contents.
+    </ol>
 
 
 
@@ -792,6 +939,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        length of the blob in bytes.
+    </ol>
 
 
 
@@ -806,6 +958,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        blob contents as a string.
+    </ol>
 
 
 
@@ -838,6 +995,11 @@
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Face</code> object, or <code>nil</code> if the blob is invalid.
+    </ol>
 
 
 
@@ -864,6 +1026,59 @@
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Face</code> object, or <code>nil</code> if the file cannot be read.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:blob"></a>
+    <strong>Face:blob ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_reference_blob</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>Blob</code> containing the raw font data, or <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:get_name"></a>
+    <strong>Face:get_name (name_id[, lang])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_name_get_utf8</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name_id</span>
+         an <code>ot.NAME_ID_*</code> constant.
+        </li>
+        <li><span class="parameter">lang</span>
+         a <code>Language</code> object; uses default language if omitted.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        name string, or <code>nil</code> if not found.
+    </ol>
 
 
 
@@ -897,6 +1112,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        number of glyphs in the face.
+    </ol>
 
 
 
@@ -955,6 +1175,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        units-per-em value of the face.
+    </ol>
 
 
 
@@ -969,6 +1194,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the face has color palettes.
+    </ol>
 
 
 
@@ -983,6 +1213,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        number of color palettes in the face.
+    </ol>
 
 
 
@@ -990,13 +1225,25 @@
 </dd>
     <dt>
     <a name = "Face:ot_color_palette_get_colors"></a>
-    <strong>Face:ot_color_palette_get_colors ()</strong>
+    <strong>Face:ot_color_palette_get_colors ([palette_index=1])</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_color_palette_get_colors</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">palette_index</span>
+         1-indexed palette index.
+         (<em>default</em> 1)
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        table of color tables each with <code>red</code>, <code>green</code>, <code>blue</code>, <code>alpha</code> fields, or <code>nil</code>.
+    </ol>
 
 
 
@@ -1011,6 +1258,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the face has layered color glyphs.
+    </ol>
 
 
 
@@ -1018,13 +1270,24 @@
 </dd>
     <dt>
     <a name = "Face:ot_color_glyph_get_layers"></a>
-    <strong>Face:ot_color_glyph_get_layers ()</strong>
+    <strong>Face:ot_color_glyph_get_layers (glyph)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_color_glyph_get_layers</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         glyph index.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        table of layer tables each with <code>glyph</code> and <code>color_index</code> fields, or <code>nil</code>.
+    </ol>
 
 
 
@@ -1039,6 +1302,234 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the face has PNG color glyphs.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_has_svg"></a>
+    <strong>Face:ot_color_has_svg ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_has_svg</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the face has SVG color glyphs.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_glyph_get_svg"></a>
+    <strong>Face:ot_color_glyph_get_svg (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_glyph_reference_svg</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         glyph index.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>Blob</code> containing the SVG data, or <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_has_data"></a>
+    <strong>Face:ot_var_has_data ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_has_data</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the face has OpenType variation data.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_find_axis_info"></a>
+    <strong>Face:ot_var_find_axis_info (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_find_axis_info</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         <code>Tag</code> of the variation axis.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table with fields <code>axis_index</code>, <code>tag</code>, <code>name_id</code>, <code>flags</code>, <code>min_value</code>, <code>default_value</code>, <code>max_value</code>, or <code>nil</code> if not found.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_get_axis_infos"></a>
+    <strong>Face:ot_var_get_axis_infos ([start=1[, stop=-1]])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_get_axis_infos</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">start</span>
+         1-indexed start axis.
+         (<em>default</em> 1)
+        </li>
+        <li><span class="parameter">stop</span>
+         1-indexed end axis (inclusive); <code>-1</code> means last.
+         (<em>default</em> -1)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table of axis info tables, each with fields <code>axis_index</code>, <code>tag</code>, <code>name_id</code>, <code>flags</code>, <code>min_value</code>, <code>default_value</code>, <code>max_value</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_named_instance_get_infos"></a>
+    <strong>Face:ot_var_named_instance_get_infos ([start=1[, stop=-1]])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_get_named_instance_count</code> and related functions.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">start</span>
+         1-indexed start instance.
+         (<em>default</em> 1)
+        </li>
+        <li><span class="parameter">stop</span>
+         1-indexed end instance (inclusive); <code>-1</code> means last.
+         (<em>default</em> -1)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table of instance info tables, each with fields <code>index</code>, <code>subfamily_name_id</code>, <code>postscript_name_id</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_named_instance_get_design_coords"></a>
+    <strong>Face:ot_var_named_instance_get_design_coords (index)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_named_instance_get_design_coords</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+         1-indexed named instance index.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        multiple return values, one number per axis.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_normalize_variations"></a>
+    <strong>Face:ot_var_normalize_variations (...)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_normalize_variations</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         one or more <code>Variation</code> objects.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        multiple return values, one normalized integer coordinate per axis.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_var_normalize_coords"></a>
+    <strong>Face:ot_var_normalize_coords (...)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_var_normalize_coords</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         one or more design-space coordinate numbers, one per axis.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        multiple return values, one normalized integer coordinate per axis.
+    </ol>
 
 
 
@@ -1046,13 +1537,24 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_get_script_tags"></a>
-    <strong>Face:ot_layout_get_script_tags ()</strong>
+    <strong>Face:ot_layout_get_script_tags (table_tag)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_table_get_script_tags</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        table of script <code>Tag</code>s, or <code>nil</code>.
+    </ol>
 
 
 
@@ -1060,13 +1562,27 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_get_language_tags"></a>
-    <strong>Face:ot_layout_get_language_tags ()</strong>
+    <strong>Face:ot_layout_get_language_tags (table_tag, script_index)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_script_get_language_tags</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+        <li><span class="parameter">script_index</span>
+         index of the script.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        table of language <code>Tag</code>s, or <code>nil</code>.
+    </ol>
 
 
 
@@ -1074,13 +1590,30 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_get_feature_tags"></a>
-    <strong>Face:ot_layout_get_feature_tags ()</strong>
+    <strong>Face:ot_layout_get_feature_tags (table_tag, script_index, language_index)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_language_get_feature_tags</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+        <li><span class="parameter">script_index</span>
+         index of the script.
+        </li>
+        <li><span class="parameter">language_index</span>
+         index of the language.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        table of feature <code>Tag</code>s, or <code>nil</code>.
+    </ol>
 
 
 
@@ -1088,13 +1621,27 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_find_script"></a>
-    <strong>Face:ot_layout_find_script ()</strong>
+    <strong>Face:ot_layout_find_script (table_tag, script_tag)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_table_find_script</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+        <li><span class="parameter">script_tag</span>
+         <code>Tag</code> of the script to find.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the script was found, and its index.
+    </ol>
 
 
 
@@ -1102,13 +1649,30 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_find_language"></a>
-    <strong>Face:ot_layout_find_language ()</strong>
+    <strong>Face:ot_layout_find_language (table_tag, script_index, language_tag)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_script_find_language</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+        <li><span class="parameter">script_index</span>
+         index of the script.
+        </li>
+        <li><span class="parameter">language_tag</span>
+         <code>Tag</code> of the language to find.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the language was found, and its index.
+    </ol>
 
 
 
@@ -1116,13 +1680,33 @@
 </dd>
     <dt>
     <a name = "Face:ot_layout_find_feature"></a>
-    <strong>Face:ot_layout_find_feature ()</strong>
+    <strong>Face:ot_layout_find_feature (table_tag, script_index, language_index, feature_tag)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_layout_language_find_feature</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">table_tag</span>
+         <code>Tag</code> for the layout table (<code>GSUB</code> or <code>GPOS</code>).
+        </li>
+        <li><span class="parameter">script_index</span>
+         index of the script.
+        </li>
+        <li><span class="parameter">language_index</span>
+         index of the language.
+        </li>
+        <li><span class="parameter">feature_tag</span>
+         <code>Tag</code> of the feature to find.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating whether the feature was found, and its index.
+    </ol>
 
 
 
@@ -1153,6 +1737,11 @@
         </li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Font</code> object.
+    </ol>
 
 
 
@@ -1411,14 +2000,250 @@
 
 </dd>
     <dt>
+    <a name = "Font:style_get_value"></a>
+    <strong>Font:style_get_value (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_style_get_value</code>.
+  Available when HarfBuzz >= 3.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object for the style axis (e.g. <code>wght</code>, <code>ital</code>).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        style value as a number.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "Font:ot_color_glyph_get_png"></a>
-    <strong>Font:ot_color_glyph_get_png ()</strong>
+    <strong>Font:ot_color_glyph_get_png (glyph)</strong>
     </dt>
     <dd>
     Wraps <code>hb_ot_color_glyph_get_png</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         glyph index.
+        </li>
+    </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>Blob</code> containing the PNG data, or <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:ot_metrics_get_position"></a>
+    <strong>Font:ot_metrics_get_position (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_metrics_get_position</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object for the metric.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer position value, or <code>nil</code> if not available.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:ot_metrics_get_variation"></a>
+    <strong>Font:ot_metrics_get_variation (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_metrics_get_variation</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object for the metric.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number variation value.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:ot_metrics_get_x_variation"></a>
+    <strong>Font:ot_metrics_get_x_variation (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_metrics_get_x_variation</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object for the metric.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer x variation value.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:ot_metrics_get_y_variation"></a>
+    <strong>Font:ot_metrics_get_y_variation (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_metrics_get_y_variation</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object for the metric.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        integer y variation value.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:set_variations"></a>
+    <strong>Font:set_variations (...)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_set_variations</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         one or more <code>Variation</code> objects.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:set_var_coords_design"></a>
+    <strong>Font:set_var_coords_design (...)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_set_var_coords_design</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         one or more design-space coordinate numbers, one per axis.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:set_var_coords_normalized"></a>
+    <strong>Font:set_var_coords_normalized (...)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_set_var_coords_normalized</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+         one or more normalized coordinate integers, one per axis.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:set_var_named_instance"></a>
+    <strong>Font:set_var_named_instance (index)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_set_var_named_instance</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+         1-indexed named instance index.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_var_coords_normalized"></a>
+    <strong>Font:get_var_coords_normalized ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_var_coords_normalized</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        multiple return values, one normalized integer coordinate per axis.
+    </ol>
 
 
 
@@ -1439,6 +2264,34 @@
     Wraps <code>hb_buffer_create</code>.
 
 
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Buffer</code> object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:add"></a>
+    <strong>Buffer:add (codepoint, cluster)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_add</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">codepoint</span>
+         Unicode codepoint to add.
+        </li>
+        <li><span class="parameter">cluster</span>
+         cluster index of the codepoint.
+        </li>
+    </ul>
 
 
 
@@ -1619,13 +2472,19 @@
 
 </dd>
     <dt>
-    <a name = "Buffer:reverse"></a>
-    <strong>Buffer:reverse ()</strong>
+    <a name = "Buffer:set_flags"></a>
+    <strong>Buffer:set_flags (flags)</strong>
     </dt>
     <dd>
-    Wraps <code>hb_buffer_reverse</code>.
+    Wraps <code>hb_buffer_set_flags</code>.
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flags</span>
+         see <a href="#Buffer_Flags">Buffer Flags</a>
+        </li>
+    </ul>
 
 
 
@@ -1633,32 +2492,18 @@
 
 </dd>
     <dt>
-    <a name = "Buffer:get_length"></a>
-    <strong>Buffer:get_length ()</strong>
+    <a name = "Buffer:get_flags"></a>
+    <strong>Buffer:get_flags ()</strong>
     </dt>
     <dd>
-    Wraps <code>hb_buffer_get_length</code>.
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Buffer:get_cluster_level"></a>
-    <strong>Buffer:get_cluster_level ()</strong>
-    </dt>
-    <dd>
-    Wraps <code>hb_buffer_get_cluster_level</code>.
+    Wraps <code>hb_buffer_get_flags</code>.
 
 
 
     <h3>Returns:</h3>
     <ol>
 
-        see <a href="#Cluster_Levels">Cluster Levels</a>
+        see <a href="#Buffer_Flags">Buffer Flags</a>
     </ol>
 
 
@@ -1686,6 +2531,122 @@
 
 </dd>
     <dt>
+    <a name = "Buffer:get_cluster_level"></a>
+    <strong>Buffer:get_cluster_level ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_cluster_level</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        see <a href="#Cluster_Levels">Cluster Levels</a>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_invisible_glyph"></a>
+    <strong>Buffer:set_invisible_glyph (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_invisible_glyph</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         glyph index to use for invisible characters.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_invisible_glyph"></a>
+    <strong>Buffer:get_invisible_glyph ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_invisible_glyph</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        glyph index used for invisible characters.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_replacement_codepoint"></a>
+    <strong>Buffer:set_replacement_codepoint (codepoint)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_replacement_codepoint</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">codepoint</span>
+         replacement codepoint for invalid input.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_replacement_codepoint"></a>
+    <strong>Buffer:get_replacement_codepoint ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_replacement_codepoint</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        replacement codepoint for invalid input.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_length"></a>
+    <strong>Buffer:get_length ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_length</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        number of items in the buffer.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "Buffer:guess_segment_properties"></a>
     <strong>Buffer:guess_segment_properties ()</strong>
     </dt>
@@ -1694,6 +2655,73 @@
 
 
 
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:reverse"></a>
+    <strong>Buffer:reverse ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_reverse</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:clear_contents"></a>
+    <strong>Buffer:clear_contents ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_clear_contents</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:reset"></a>
+    <strong>Buffer:reset ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_reset</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:pre_allocate"></a>
+    <strong>Buffer:pre_allocate (size)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_pre_allocate</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">size</span>
+         number of items to pre-allocate.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean indicating success.
+    </ol>
 
 
 
@@ -1737,7 +2765,7 @@
     <h2 class="section-header has-description"><a name="Cluster_Levels"></a>Cluster Levels </h2>
 
           <div class="section-description">
-           See <a href="http://behdad.github.io/harfbuzz/clusters.html">Harfbuzz docs</a> for more details
+           See <a href="https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-buffer-cluster-level-t">Harfbuzz docs</a> for more details
  about what each of these levels mean.
           </div>
     <dl class="function">
@@ -1798,8 +2826,12 @@
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Buffer_Flags"></a>Buffer Flags </h2>
+    <h2 class="section-header has-description"><a name="Buffer_Flags"></a>Buffer Flags </h2>
 
+          <div class="section-description">
+           See <a href="https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-buffer-flags-t">Harfbuzz docs</a> for more details
+ about what each of these flags mean.
+          </div>
     <dl class="function">
     <dt>
     <a name = "Buffer.FLAG_DEFAULT"></a>
@@ -1942,8 +2974,12 @@
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Glyph_Flags"></a>Glyph Flags </h2>
+    <h2 class="section-header has-description"><a name="Glyph_Flags"></a>Glyph Flags </h2>
 
+          <div class="section-description">
+           See <a href="https://harfbuzz.github.io/harfbuzz-hb-buffer.html#hb-glyph-flags-t">Harfbuzz docs</a> for more details
+ about what each of these flags mean.
+          </div>
     <dl class="function">
     <dt>
     <a name = "Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK"></a>
@@ -2034,6 +3070,53 @@
     </dt>
     <dd>
     Wraps <code>hb_feature_to_string</code>.
+  Enables nice output with <code>tostring(…)</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Variation"></a>Class Variation </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_variation_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Variation.new"></a>
+    <strong>Variation.new (variation_string)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_variation_from_string</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">variation_string</span>
+         variation string, e.g. <code>"wght=700"</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Variation</code> object, or <code>nil</code> if the string is invalid.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Variation:__tostring"></a>
+    <strong>Variation:__tostring ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_variation_to_string</code>.
   Enables nice output with <code>tostring(…)</code>.
 
 
@@ -3098,7 +4181,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
-<i style="float:right;">Last updated 2026-06-19 13:10:27 </i>
+<i style="float:right;">Last updated 2026-06-23 14:19:38 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
